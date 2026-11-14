@@ -532,30 +532,17 @@
     </button>
   </div>
   <img class="logo" src="logo.png" width="420" height="441" alt="Sols" draggable="false">
-  <span class="kicker">SOLS V2 · FACTIONS</span>
-  <h1>Rules of Engagement</h1>
-  <p class="tagline">Stories of Los Santos</p>
-  <p class="subtitle">Every faction member is expected to know these rules. "I didn't know" won't be accepted.</p>
-  <div class="stats">
-    <span><b>8</b> sections</span>
-    <span><b>3</b> faction tiers</span>
-    <span><b>24h</b> report window</span>
-  </div>
+  <span class="kicker" id="cfg-kicker"></span>
+  <h1 id="cfg-title"></h1>
+  <p class="tagline" id="cfg-tagline"></p>
+  <p class="subtitle" id="cfg-subtitle"></p>
+  <div class="stats" id="cfg-stats"></div>
   <div class="lights" aria-hidden="true"></div>
 </header>
 
 <nav class="contents" aria-labelledby="contents-title">
   <h2 class="contents-title" id="contents-title">Jump to section</h2>
-  <ol class="toc-list" id="toc-list">
-    <li><a href="#faction-progression"><span>01</span>Faction Progression &amp; Beef System</a></li>
-    <li><a href="#faction-attacks"><span>02</span>Faction Attacks</a></li>
-    <li><a href="#attack-regulations"><span>03</span>Attack Regulations</a></li>
-    <li><a href="#bullying-courtesy"><span>04</span>Bullying &amp; Courtesy</a></li>
-    <li><a href="#pinpointing-escalation"><span>05</span>Pinpointing &amp; Escalation</a></li>
-    <li><a href="#additional-rules"><span>06</span>Additional Rules</a></li>
-    <li><a href="#report-regulations"><span>07</span>Report Regulations</a></li>
-    <li><a href="#weapon-trading"><span>08</span>Weapon Trading &amp; Refill Guidelines</a></li>
-  </ol>
+  <ol class="toc-list" id="toc-list"></ol>
 </nav>
 
 <div class="search" role="search">
@@ -572,7 +559,7 @@
     <button type="button" class="toc-toggle" id="toc-toggle" aria-expanded="false" aria-controls="toc-drop">
       <span class="k">Jump to</span>
       <span class="toc-current-num" id="toc-current-num">01</span>
-      <span class="toc-current" id="toc-current">Faction Progression &amp; Beef System</span>
+      <span class="toc-current" id="toc-current"></span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </button>
     <nav class="toc-drop" id="toc-drop" aria-label="Jump to section"></nav>
@@ -580,422 +567,118 @@
 </div>
 
 <main class="main" id="rules" tabindex="-1">
-  <article class="doc">
-
-    <!-- 1 -->
-    <section id="faction-progression" aria-labelledby="h-faction-progression">
-      <div class="sec-head">
-        <h2 class="sec" id="h-faction-progression">Faction Progression &amp; Beef System</h2>
-      </div>
-      <p>Factions are expected to gradually build their presence within the server rather than immediately entering multiple conflicts. Each stage of faction progression comes with different limits on how many active beefs a faction may have.</p>
-      <div class="stages">
-        <div class="sub" id="tier-1">
-          <div class="sub-head"><h3>Tier 1</h3></div>
-          <p>This stage is focused on developing your faction's identity, building connections, and creating RP with other factions. Use this time to establish relationships, alliances, rivalries, and storylines before becoming a Tier 1.5 Faction.</p>
-        </div>
-        <div class="sub" id="tier-1-5">
-          <div class="sub-head"><h3>Tier 1.5</h3><span class="badge">Up to 3 active beefs</span></div>
-          <p>Once your faction becomes Tier 1.5, you may have active beef with up to three (3) other Tier 1.5 Factions at a time. This encourages factions to develop meaningful conflicts rather than attempting to involve themselves in every situation.</p>
-        </div>
-        <div class="sub" id="tier-2">
-          <div class="sub-head"><h3>Tier 2</h3><span class="badge">Three-beef limit removed</span></div>
-          <p>Once your faction reaches Tier 2, the three-beef limit is removed. Tier 2 factions may develop conflicts with any faction that is Tier 1.5 status or higher, provided all other ROE and escalation requirements are followed.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2 -->
-    <section id="faction-attacks" aria-labelledby="h-faction-attacks">
-      <div class="sec-head">
-        <h2 class="sec" id="h-faction-attacks">Faction Attacks</h2>
-      </div>
-      <p>Faction Attacks occur when an attacking faction creates a hostile environment toward another faction. Once accepted into a weapon scheme, faction attacks are limited to firearms unless otherwise specified. All attacks must escalate realistically and organically under all circumstances.</p>
-      <p>There are four different attack types, which operate under two separate cooldown systems:</p>
-      <ul class="chips" aria-label="Attack types">
-        <li><a href="#deathmatching-attacks">Deathmatching Attacks</a></li>
-        <li><a href="#robberies">Robberies</a></li>
-        <li><a href="#hostile-environment">Hostile Environment</a></li>
-        <li><a href="#mutual-combat">Mutual Combat</a></li>
-      </ul>
-
-      <div class="sub" id="deathmatching-attacks">
-        <div class="sub-head"><h3>Deathmatching Attacks</h3><span class="badge">4+ on set turf</span></div>
-        <p>Deathmatching Attacks are faction attacks committed strictly through the use of firearms. This includes shooting in the air, at a person, or anywhere on a faction's set turf.</p>
-        <ul class="rules">
-          <li>If you are attacking a faction and there are 4 or more members/users on their set turf, you may initiate a Deathmatching Attack.</li>
-          <li>There is a 3-day cooldown between Deathmatching Attacks.</li>
-          <li>Tier 2 factions and higher may conduct 2 Deathmatching Attacks per day.</li>
-          <li>Deathmatching Attacks must still be conducted organically and cannot be used to force unnecessary conflict.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="robberies">
-        <div class="sub-head"><h3>Robberies</h3><span class="badge">6-hour cooldown</span></div>
-        <p>A Robbery is considered an interaction when a faction member attempts to rob another player.</p>
-        <ul class="rules">
-          <li>Factions have a 6-hour cooldown between Robberies.</li>
-          <li>If a Robbery occurs within another faction's set turf, it will count as a Faction Attack, as it creates a hostile environment.</li>
-          <li>Robberies are expected to occur organically and should only be initiated when there is a clear or reasonably identifiable advantage.</li>
-          <li>Acceptable examples include 2v1 or 4v2 situations.</li>
-          <li>Attempting to force robberies in situations such as 4v3 or 4v4 is not permitted under the Server Guidelines.</li>
-        </ul>
-        <div class="callout">
-          <span class="label">Exception</span>
-          <p>The numbers rule does not apply in every situation. For example, if you enter your own faction's turf and there is a large crowd present, or if you enter a house where the number of occupants is unknown, you cannot reasonably be expected to know the exact numbers involved.</p>
-          <p>However, outside of situations where the numbers are genuinely unknown or naturally skewed, factions should not intentionally force a numerical advantage simply to justify a robbery. Robberies should happen naturally through RP rather than being treated as a way to manufacture conflict.</p>
-        </div>
-      </div>
-
-      <div class="sub" id="hostile-environment">
-        <div class="sub-head"><h3>Hostile Environment</h3></div>
-        <p>A Hostile Environment occurs when a faction enters another faction's turf with the intent to create hostility or provoke a reaction.</p>
-        <p>Hostile actions may include, but are not limited to:</p>
-        <ul class="rules">
-          <li>Putting a member of the opposing faction into Death Mode.</li>
-          <li>Chasing an opposing faction member on foot or in a vehicle.</li>
-          <li>Being verbally hostile toward the opposing faction, such as dissing their set.</li>
-          <li>Repeatedly spinning an opposing faction's turf, if the opposing faction reacts to the behavior.</li>
-          <li>Entering an opposing faction's turf with the intent to instigate or provoke them into attacking.</li>
-          <li>Heavily trooping through the turf of a faction you have an established beef with in a manner clearly intended to provoke a response.</li>
-        </ul>
-        <p>If a defending faction chooses to react to a Hostile Environment by engaging the opposing faction, the interaction will count as an Attack for the faction that created the Hostile Environment.</p>
-        <p>The faction responsible for creating the Hostile Environment will subsequently be placed under the 12-hour Deathmatching Attack cooldown.</p>
-      </div>
-
-      <div class="sub" id="mutual-combat">
-        <div class="sub-head"><h3>Mutual Combat</h3><span class="badge">5+ members per faction</span></div>
-        <p>Mutual Combat occurs when two crowded factions, consisting of 5 or more members from each faction, engage in an interaction within the same vicinity that creates a hostile environment and could reasonably escalate into a shootout.</p>
-        <p>If a shootout occurs, the faction that engages first will be considered the attacking faction.</p>
-        <div class="callout">
-          <span class="label">Examples:</span>
-          <ul class="rules">
-            <li>Two factions unexpectedly encounter one another at a gas station or clothing store, resulting in an organic escalation into a shootout.</li>
-          </ul>
-        </div>
-        <p>When Mutual Combat results in a shootout, both participating factions will be placed under the 12-hour Deathmatching Attack cooldown.</p>
-        <div class="callout warn">
-          <span class="label">Restriction</span>
-          <p>Mutual Combat cannot take place on a faction's set turf.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3 -->
-    <section id="attack-regulations" aria-labelledby="h-attack-regulations">
-      <div class="sec-head">
-        <h2 class="sec" id="h-attack-regulations">Attack Regulations</h2>
-      </div>
-      <p>Before participating in any faction attack or shootout, all members are expected to follow the regulations below. Failure to follow these regulations may result in individual or faction punishment.</p>
-
-      <div class="sub" id="character-development">
-        <div class="sub-head"><h3>Character Development</h3></div>
-        <ul class="rules">
-          <li>Before participating in a shootout, you must have fully developed your character. This is a strict requirement.</li>
-          <li>Your character must have realistic development toward:
-            <ul>
-              <li>Possessing and/or obtaining a firearm.</li>
-              <li>Becoming involved in illegal activity.</li>
-              <li>Developing a legitimate negative interaction or conflict with the opposing faction.</li>
-            </ul>
-          </li>
-          <li>Gunplay should never be the starting point of a character's story. There must be sufficient RP leading up to the conflict.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="72-hour-requirement">
-        <div class="sub-head"><h3>72-Hour Requirement</h3><span class="badge">72 hours (3 days)</span></div>
-        <ul class="rules">
-          <li>You must wait at least 72 hours (3 days) after creating a character and/or joining a faction before participating in a faction attack.</li>
-          <li>Failure to meet this requirement may result in punishment.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="attack-size">
-        <div class="sub-head"><h3>Attack Size</h3><span class="badge">4 participants</span></div>
-        <ul class="rules">
-          <li>A maximum of 4 members may intentionally participate in a faction attack.</li>
-          <li>Exceptions may apply when:
-            <ul>
-              <li>The attack occurs on your faction's set turf after the turf has been made hostile.</li>
-              <li>The interaction qualifies as Mutual Combat.</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-      <div class="sub" id="maximum-kills">
-        <div class="sub-head"><h3>Maximum Kills</h3><span class="badge">3 intentional kills</span></div>
-        <ul class="rules">
-          <li>During a faction attack, you may intentionally kill a maximum of 3 members of the opposing faction.</li>
-          <li>If a fourth user is unintentionally killed, the final victim may be revived and the attacking faction will not receive a refund.</li>
-          <li>This regulation does not apply to shootouts. If both parties actively engage in a shootout, no characters will be revived regardless of whether every participant was armed.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="turf-defense">
-        <div class="sub-head"><h3>Turf Defense</h3></div>
-        <p>Defense within a faction's turf must remain realistic and reasonable.</p>
-        <p>The following are prohibited or heavily discouraged:</p>
-        <ul class="rules">
-          <li>Creating extended or deliberate roadblocks.</li>
-          <li>Constantly patrolling the turf on foot or in vehicles solely to defend it.</li>
-          <li>Camping on rooftops.</li>
-          <li>Any other tactic that is deemed unrealistic or excessively defensive by Faction Management.</li>
-        </ul>
-        <p>Tactics that are considered Playing to Win or Subpar Roleplay may result in faction punishment.</p>
-      </div>
-
-      <div class="sub" id="double-attacks">
-        <div class="sub-head"><h3>Double Attacks</h3></div>
-        <ul class="rules">
-          <li>If the roleplay surrounding an attack is sufficient and the opposing faction has not slid back within 120 hours (5 days), a faction may conduct a double attack.</li>
-          <li>You may not conduct another Deathmatching Attack until 5 full calendar days have passed.</li>
-          <li>This rule applies only to Deathmatching Attacks and does not apply to Robberies.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="shooters-pov">
-        <div class="sub-head"><h3>Shooter's POV</h3><span class="badge">3-minute minimum</span></div>
-        <ul class="rules">
-          <li>A Shooter's POV with sound must be provided whenever requested by Faction Management or staff.</li>
-          <li>Failure to provide the required POV may result in the report being decided without your evidence and may lead to faction punishment.</li>
-          <li>POVs must be recorded using GeForce Experience/NVIDIA or AMD recording software.</li>
-          <li>The required recording must be at least 3 minutes long.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="turf-camping">
-        <div class="sub-head"><h3>Turf Camping</h3></div>
-        <ul class="rules">
-          <li>You may not intentionally linger around an opposing faction's turf after an attack or interaction.</li>
-          <li>Remaining in or around a turf without legitimate RP justification may be considered Turf Camping.</li>
-          <li>Turf Camping is ultimately subject to Faction Management discretion.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="scouting-spinning">
-        <div class="sub-head"><h3>Scouting &amp; Spinning</h3></div>
-        <p>Members who are not actively participating in a faction attack may not scout or spin an opposing faction's turf.</p>
-        <p>This applies to:</p>
-        <ul class="rules">
-          <li>Defense.</li>
-          <li>Backdoor roleplay, unless you are the player actively lining the victim.</li>
-          <li>Gathering information for an upcoming attack or interaction.</li>
-          <li>Relaying information about opposing faction members to your faction.</li>
-        </ul>
-        <p>Scouting is defined as intentionally circling or monitoring an opposing faction's turf, or your own turf, for the primary purpose of gathering information and relaying it to your faction.</p>
-        <p>Scouting is prohibited both on foot and in vehicles.</p>
-      </div>
-
-      <div class="sub" id="probationary-factions">
-        <div class="sub-head"><h3>Probationary Factions</h3></div>
-        <ul class="rules">
-          <li>You may not attack a faction that is currently on probation.</li>
-          <li>Probationary factions should not participate in gunplay until their probationary period has ended.</li>
-          <li>This includes set-ups, lines, and other forms of faction gunplay.</li>
-          <li>An exception may apply if the probationary faction directly brings the situation upon themselves, such as through disrespect toward deceased members.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="fist-fights-brawls">
-        <div class="sub-head"><h3>Fist Fights &amp; Brawls</h3></div>
-        <ul class="rules">
-          <li>Fist fights are not considered faction attacks once a faction has been Tiered or has completed probation.</li>
-          <li>For Tiered/non-probationary factions, fist fights only count as an interaction.</li>
-          <li>During probation, however, any physical altercation where one faction outnumbers the opposing party will count as an attack.</li>
-          <li>This includes brawls, jumping, and similar situations.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="non-faction-members">
-        <div class="sub-head"><h3>Non-Faction Members</h3></div>
-        <ul class="rules">
-          <li>Users who are not members of a faction may not participate in faction attacks.</li>
-          <li>The exception is users participating through the Illegal Civilian Scheme.</li>
-          <li>Illegal Civilians may participate only when they have sufficient evidence and RP established through backdoor roleplay.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="masks-identification">
-        <div class="sub-head"><h3>Masks &amp; Identification</h3></div>
-        <ul class="rules">
-          <li>If a member of an opposing faction is wearing a mask, they may still be held liable for an attack.</li>
-          <li>This applies whether they are on the opposing faction's turf or in a public area, regardless of the type of mask being worn.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="vehicles">
-        <div class="sub-head"><h3>Vehicles</h3></div>
-        <ul class="rules">
-          <li>Faction attacks conducted from electric vehicles or motorcycles are strictly prohibited.</li>
-          <li>All forms of motorcycles except mopeds and bicycles are prohibited from being used during faction attacks.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="post-attack-server-time">
-        <div class="sub-head"><h3>Post-Attack Server Time</h3><span class="badge">30 minutes</span></div>
-        <ul class="rules">
-          <li>After initiating a faction attack, you must remain in the server for at least 30 minutes.</li>
-          <li>The same requirement applies to members participating in the defense of a faction attack.</li>
-          <li>Leaving the server before the required time may result in punishment.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 4 -->
-    <section id="bullying-courtesy" aria-labelledby="h-bullying-courtesy">
-      <div class="sec-head">
-        <h2 class="sec" id="h-bullying-courtesy">Bullying &amp; Courtesy</h2>
-      </div>
-      <p>The purpose of these regulations is to encourage factions below Tier 1 to develop meaningful roleplay throughout the server while preventing established factions from circumventing courtesy rules or unnecessarily bullying non-tiered factions.</p>
-      <ul class="rules">
-        <li>Tier 2 loot may only be used against factions that are Tier 1 or higher when conducting an Attack.</li>
-        <li>Tier 1.5 weapons are limited to a maximum of 2 weapons when engaging a non-tiered faction.</li>
-        <li>Any violation of these regulations may result in faction discipline, regardless of whether a formal report is submitted.</li>
-      </ul>
-      <p>Tier 1 and Tier 1.5 factions should prioritize building ROLEPLAY throughout the server before becoming eligible for Tier 2.</p>
-      <p>There should also be a reasonable level of respect and/or fear toward established Tier 2 factions. Realistically, an inexperienced group would not see an established faction openly displaying multiple rifles and act completely fearless without considering the potential consequences or their own limitations.</p>
-      <p>Before becoming a Tiered faction, you should be actively roleplaying around the fact that established factions have more experience, resources, and influence than your own. This system exists to maintain a fair environment for both new and experienced factions within the Faction Scheme.</p>
-    </section>
-
-    <!-- 5 -->
-    <section id="pinpointing-escalation" aria-labelledby="h-pinpointing-escalation">
-      <div class="sec-head">
-        <h2 class="sec" id="h-pinpointing-escalation">Pinpointing &amp; Escalation</h2>
-      </div>
-
-      <div class="sub" id="pinpointing">
-        <div class="sub-head"><h3>Pinpointing</h3></div>
-        <p>Pinpointing is the act of gathering information about a faction or individual with the intent of potentially using that information to conduct a future attack.</p>
-        <p>Pinpointing must be based exclusively on legitimate in-character knowledge.</p>
-        <p>Information that may be used for pinpointing includes, but is not limited to:</p>
-        <ul class="rules">
-          <li>Known hangout locations.</li>
-          <li>Apartments or residences.</li>
-          <li>Vehicles.</li>
-          <li>Clothing or recognizable outfits.</li>
-          <li>Known faction members or notable individuals.</li>
-          <li>Other locations or identifying information discovered through legitimate RP.</li>
-        </ul>
-        <p>If a faction has obtained legitimate in-character knowledge that a faction member or notable member is located at one of these locations, they may act on that information.</p>
-        <div class="callout">
-          <span class="label">Example:</span>
-          <p>A faction observes two known members of an opposing faction enter an apartment. The location has now been established through IC knowledge, meaning the faction may enter the apartment without requiring additional pinpointing.</p>
-        </div>
-        <p>Nametags may also be used as a form of pinpointing when the information is reasonably obtained through the RP situation.</p>
-      </div>
-
-      <div class="sub" id="poor-escalation">
-        <div class="sub-head"><h3>Poor Escalation</h3><span class="badge">7 meaningful interactions</span></div>
-        <p>Faction attacks must have sufficient roleplay, reasoning, and escalation behind them.</p>
-        <p>Any attack that is initiated without proper buildup or a sufficient reason may be considered Poor Escalation and can result in faction punishment.</p>
-        <p>As a general requirement, you should have at least 7 meaningful interactions with the individual involved before escalating to a faction attack. These interactions must contribute to the development of the conflict and cannot simply be manufactured for the purpose of reaching the required number.</p>
-      </div>
-
-      <div class="sub" id="negative-interactions">
-        <div class="sub-head"><h3>Negative Interactions</h3><span class="badge">7 negative interactions</span></div>
-        <ul class="rules">
-          <li>A faction member must have at least 7 meaningful negative interactions with an opposing faction member before engaging in a shootout.</li>
-          <li>Simple arguments or verbal exchanges do not count toward these interactions.</li>
-          <li>The interactions must be legitimate and contribute to the development of the conflict.</li>
-          <li>This requirement is void if gunplay has already occurred between the players.</li>
-        </ul>
-      </div>
-
-      <div class="sub" id="avoiding-roleplay">
-        <div class="sub-head"><h3>Avoiding Roleplay / Playing to Win</h3></div>
-        <p>If an opposing faction member enters a faction's set turf and is identified as a member of that faction, whether through their appearance, clothing, mask, or other recognizable characteristics, they may be engaged through RP.</p>
-        <p>If the individual deliberately avoids or refuses legitimate roleplay in an attempt to escape the situation or gain an advantage, this may be considered Playing to Win.</p>
-        <p>If the player is clearly identified as an opposing faction member and is intentionally refusing the RP interaction, the defending faction may have full authority to kill the player.</p>
-        <p>This authority should only be exercised when the circumstances clearly demonstrate an intentional attempt to avoid legitimate roleplay. It should not be used as an excuse to bypass normal escalation requirements.</p>
-      </div>
-    </section>
-
-    <!-- 6 -->
-    <section id="additional-rules" aria-labelledby="h-additional-rules">
-      <div class="sec-head">
-        <h2 class="sec" id="h-additional-rules">Additional Rules</h2>
-      </div>
-      <ul class="rules">
-        <li>As a Faction Member, you are only allowed to roleplay injuries if you are shot and do not enter the Death Script. If you enter the Death Script from being shot, you are required to Character Kill (CK) after having received your one-time PK (if you qualify). This also applies to situations such as tripping, vehicle accidents, and similar incidents. If a player enters the Death Script due to a confirmed server-sided issue, the outcome will be left to Administrator discretion. This includes falling through the map while out of combat or dying due to server-sided/invisible collisions.</li>
-        <li><strong>Backdoor Roleplay:</strong> All revenge, conflict, or hostile actions must be based on developed, realistic, and meaningful in-character reasoning. You must demonstrate ongoing RP and IC development leading up to your actions. Using thin or one-line justifications, such as "he killed my best friend," without proper in-character investigation, RP progression, or evidence of the connection will be considered Backdoor RP and may result in administrative action. The member committing the backdoor or lining a user does not count toward the 4-user attack limit, unless the member lining the user shoots or otherwise utilizes a weapon.
-          <div class="callout">
-            <span class="label">Example of acceptable Backdoor Roleplay:</span>
-            <p>Your character's brother is killed. You witness the murder, gather IC clues over time, speak with others, uncover information, and build a storyline of revenge through escalating RP and faction development.</p>
-          </div>
-        </li>
-        <li>The maximum number of people allowed to participate in a brawl is 8 people per faction. This includes allies.</li>
-        <li>At public gatherings, parties, or get-togethers that have been advertised through the server, factions are not permitted to shoot, start beef, or intentionally cause drama. The conflict must be taken to a different location where the situation can properly develop through RP.</li>
-        <li>Multiple users being banned for Malicious Activity, Third-Party Modifications, or other serious offenses may be judged as Poor Representation of Faction Roleplay. Final judgment will always remain at Faction Management discretion.</li>
-        <li>Any behavior that is deemed by Faction Management to be a poor representation of Faction Roleplay may result in faction punishment.</li>
-        <li>If a faction has not applied to become a faction, gangs or factions may not be formally established. A faction may begin its development and participate in faction activity once it has an active thread.</li>
-        <li>Faction members are not permitted to enter Local OOC or act out of character without legitimate justification. Faction Management may punish an individual or their faction if they enter Local OOC simply because they are unable to take a loss. Players may also report faction members who engage in this behavior. Allow the situation to develop before asking questions; do not disrupt the flow of roleplay.</li>
-        <li>You may not attempt to take someone's inventory items after knocking them out. Only physical belongings such as shoes, clothing, etc. may be taken, and the action must be properly roleplayed through /me and /do.</li>
-        <li>Kidnapping is considered part of robbing. You may kidnap and rob another player, but you may not kidnap and kill. This also includes Torture Roleplay.</li>
-        <li>If a user is outnumbered while being surrounded, circled, cornered, or otherwise placed in a situation where resistance would be unreasonable, they must value their life and display appropriate fear, regardless of whether they are carrying a firearm.</li>
-        <li>Usage of F-Chat is strictly limited to out-of-character announcements from Server Management or faction Leadership. Any in-character usage or metagaming through F-Chat will result in a Faction Strike.</li>
-        <li><strong>Water Evading:</strong> Factions may not use water as a means of intentionally escaping from Police or an opposing faction. If caught, your character will be automatically CK’d.</li>
-        <li><strong>Cop Baiting:</strong> Factions may not intentionally bait or use distractions against Police in an attempt to avoid jail time or otherwise abuse server limitations. Punishment will depend on the severity of the situation.</li>
-        <li>Depending on the severity, a faction may receive a Strike or face Closure if there are multiple instances of members repeatedly provoking others within a Greenzone.</li>
-        <li>Factions may be punished for Playing to Win or Avoiding Roleplay, depending on the severity and Faction Management's discretion.</li>
-        <li>Any firearm whose serial number has not been properly registered with Faction Management may result in a ban and/or faction strike.</li>
-        <li>Player Kills (PKs) are defined as being able to continue roleplaying after entering the Death Script. A PK is only permitted once per character, provided the character was not shot in the head or neck and did not sustain more than two (2) gunshot wounds to the chest.</li>
-        <li><strong>PK Injury Roleplay:</strong> Characters who receive a PK must realistically roleplay their injuries. Depending on the severity, injuries must be roleplayed for 12–72 hours of active in-game time. Offline time does not count. Failure to properly roleplay PK injuries may result in Faction Management forcing a Character Kill (CK).</li>
-        <li>NPC-owned stores located on a faction's turf, such as Clothing Stores, Barbershops, Gas Stations, etc., are not considered Greenzones under ROE. Players may initiate and conduct attacks inside or outside of these locations. Player-Owned Businesses on faction turf are still considered Greenzones; this exception only applies to NPC-owned stores. There should still be common courtesy toward players who are genuinely changing their clothing or using the store for its intended purpose. Do not simply shoot everyone inside a clothing store without consideration for the RP occurring there. Faction Management has final discretion regarding situations involving this rule.</li>
-        <li><strong>Untrusted Member Limit:</strong> A faction may have no more than 5 members holding the Untrusted Member rank at any given time.</li>
-        <li>You may shoot if you are placed in imminent danger, such as having a firearm pulled on you, being actively aimed at, or having your vehicle intentionally rammed. In these situations, the shooting will not count as an Attack for either side, subject to Faction Management discretion.</li>
-        <li>Upon firing a weapon anywhere within the server, you are automatically placed under a universal 12-hour Player Cooldown. You must wait 12 hours before participating in another shootout. This cooldown does not apply when you are acting in defense.</li>
-      </ul>
-    </section>
-
-    <!-- 7 -->
-    <section id="report-regulations" aria-labelledby="h-report-regulations">
-      <div class="sec-head">
-        <h2 class="sec" id="h-report-regulations">Report Regulations</h2>
-      </div>
-      <div class="badges"><span class="badge">24-hour deadline</span></div>
-      <ul class="rules">
-        <li>Faction reports must be submitted within 24 hours of the incident.</li>
-        <li>Filing a report solely out of retaliation because a situation did not go as planned is prohibited.</li>
-        <li>If you have an active report against another faction, you must not participate in any form of negative interaction with that faction until the report has received and posted a verdict. This applies to both factions involved.</li>
-        <li>Public bashing and/or OOC toxicity toward a faction or its roleplay may result in punishment. If you have an issue with a faction, make a report or leave the situation alone. Maintain common courtesy toward other factions.</li>
-        <li>Factions may be prohibited from selling firearms and/or drugs while an active faction report is pending.</li>
-      </ul>
-    </section>
-
-    <!-- 8 -->
-    <section id="weapon-trading" aria-labelledby="h-weapon-trading">
-      <div class="sec-head">
-        <h2 class="sec" id="h-weapon-trading">Weapon Trading &amp; Refill Guidelines</h2>
-      </div>
-      <ul class="rules">
-        <li>Any abuse of the refill, trading, or robbery systems may result in an instant de-tier or other disciplinary action, at Faction Management's discretion.</li>
-        <li>Weapons may only be traded or purchased once a faction reaches Tier 1.5. Upon reaching Tier 1.5, a faction may sell one firearm per week. All sales must be logged with Faction Management immediately.</li>
-        <li>Tier 1.5 factions may conduct up to two firearm sales per week, while Tier 2 factions may conduct up to three firearm sales per week.</li>
-        <li>All firearms gained, traded, purchased, sold, or lost count toward your overall weapon limit. Every firearm transaction must be properly logged within your faction Discord and reported to a member of Faction Management. This includes sales, trades, purchases, and losses. Lost firearms may be documented through the designated lost-firearm channel.</li>
-        <li>Any firearm gained through a refill must also be logged within your faction Discord. Factions must maintain an appropriate channel specifically for documenting refills.</li>
-        <li>Going inactive between refill periods solely to return when firearms become available again is considered abuse of the scheme and may result in faction discipline. Your faction occupies a slot within the weapon scheme to contribute to roleplay, not simply to obtain and use firearms.</li>
-        <li>Faction Management actively monitors this behavior. If a faction is found intentionally disappearing after losing its firearms or manipulating activity around refill periods, disciplinary action will be taken.</li>
-      </ul>
-    </section>
-
-
+  <article class="doc" id="doc">
+    <noscript><p>Turn on JavaScript to see the rules.</p></noscript>
   </article>
   <footer>
     <img src="logo.png" alt="">
-    <div>Stories of Los Santos V2 · Faction Management has final say on anything not covered here.</div>
-    <div class="links">
-      <a href="https://pxckdev.github.io/solsv2-server-guidelines/">Server Guidelines</a>
-      <a href="https://pxckdev.github.io/factions--simple-guide-to-serious-faction-roleplay/">Faction RP Guide</a>
-      <a href="https://pxckdev.github.io/solsv2-faction-helper/">Faction Helper</a>
-    </div>
+    <div id="cfg-footer-note"></div>
+    <div class="links" id="cfg-footer-links"></div>
     <a href="#top" id="to-top">Back to top ↑</a>
   </footer>
 </main>
 <div class="sr-only" aria-live="polite" id="live"></div>
 
+<!-- All the rules and text live in config.js -->
+<script src="config.js"></script>
+<script>
+  // ===== Build the page from config.js =====
+  (function () {
+    var C = window.ROE;
+    var doc = document.getElementById('doc');
+    if (!C || !Array.isArray(C.sections)) {
+      doc.innerHTML = '<section><div class="sec-head"><h2 class="sec">config.js has a mistake</h2></div><p>The rules couldn\'t load. Open config.js and check for a missing quote, comma or bracket near your last change. Press F12 → Console to see which line.</p></section>';
+      return;
+    }
+
+    function esc(s) {
+      return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+    // **bold** and [text](https://link)
+    function fmt(s) {
+      return esc(s)
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    }
+    var used = {};
+    function makeId(s) {
+      var base = String(s).toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'section';
+      var id = base, n = 2;
+      while (used[id]) id = base + '-' + n++;
+      used[id] = true;
+      return id;
+    }
+    var list = function (v) { return v == null ? [] : Array.isArray(v) ? v : [v]; };
+
+    function callout(c) {
+      return '<div class="callout' + (c.warn ? ' warn' : '') + '">' +
+        (c.note ? '<span class="label">' + fmt(c.note) + '</span>' : '') +
+        list(c.text).map(function (p) { return '<p>' + fmt(p) + '</p>'; }).join('') +
+        (c.rules ? rules(c.rules) : '') +
+        '</div>';
+    }
+    function rules(items) {
+      return '<ul class="rules">' + list(items).map(function (r) {
+        if (typeof r === 'string') return '<li>' + fmt(r) + '</li>';
+        return '<li>' + fmt(r.text) +
+          (r.sub ? '<ul>' + list(r.sub).map(function (x) { return '<li>' + fmt(x) + '</li>'; }).join('') + '</ul>' : '') +
+          (r.callout ? callout(r.callout) : '') +
+          '</li>';
+      }).join('') + '</ul>';
+    }
+    function blocks(items, subs) {
+      return list(items).map(function (b) {
+        if (typeof b === 'string') return '<p>' + fmt(b) + '</p>';
+        if (!b || typeof b !== 'object') return '';
+        if (b.rules && b.note === undefined) return rules(b.rules);
+        if (b.note !== undefined || b.text !== undefined) return callout(b);
+        if (b.badges) return '<div class="badges">' + list(b.badges).map(function (x) { return '<span class="badge">' + fmt(x) + '</span>'; }).join('') + '</div>';
+        if (b.jumpLinks) return '<ul class="chips" aria-label="Jump to">' + subs.map(function (s) { return '<li><a href="#' + s.id + '">' + fmt(s.title) + '</a></li>'; }).join('') + '</ul>';
+        if (b.tiers) return '<div class="stages">' + list(b.tiers).map(function (t) {
+          return '<div class="sub" id="' + makeId(t.name) + '"><div class="sub-head"><h3>' + fmt(t.name) + '</h3>' +
+            (t.badge ? '<span class="badge">' + fmt(t.badge) + '</span>' : '') + '</div>' +
+            list(t.text).map(function (p) { return '<p>' + fmt(p) + '</p>'; }).join('') + '</div>';
+        }).join('') + '</div>';
+        return '';
+      }).join('');
+    }
+
+    var toc = [];
+    doc.innerHTML = C.sections.map(function (sec, i) {
+      var id = makeId(sec.title);
+      var num = (i < 9 ? '0' : '') + (i + 1);
+      toc.push('<li><a href="#' + id + '"><span>' + num + '</span>' + fmt(sec.title) + '</a></li>');
+      var subs = list(sec.subsections).map(function (s) { return { id: makeId(s.title), title: s.title, data: s }; });
+      return '<section id="' + id + '" aria-labelledby="h-' + id + '">' +
+        '<div class="sec-head"><h2 class="sec" id="h-' + id + '">' + fmt(sec.title) + '</h2></div>' +
+        blocks(sec.content, subs) +
+        subs.map(function (s) {
+          return '<div class="sub" id="' + s.id + '"><div class="sub-head"><h3>' + fmt(s.title) + '</h3>' +
+            (s.data.badge ? '<span class="badge">' + fmt(s.data.badge) + '</span>' : '') + '</div>' +
+            blocks(s.data.content, subs) + '</div>';
+        }).join('') +
+        '</section>';
+    }).join('');
+    document.getElementById('toc-list').innerHTML = toc.join('');
+
+    // Top and bottom of the page
+    var set = function (id, v) { var el = document.getElementById(id); if (v) el.innerHTML = fmt(v); else el.remove(); };
+    if (C.pageTitle) document.title = C.pageTitle;
+    set('cfg-kicker', C.kicker);
+    set('cfg-title', C.title);
+    set('cfg-tagline', C.tagline);
+    set('cfg-subtitle', C.subtitle);
+    set('cfg-footer-note', C.footerNote);
+    var stats = [{ value: C.sections.length, label: 'sections' }].concat(list(C.stats));
+    document.getElementById('cfg-stats').innerHTML = stats.map(function (s) { return '<span><b>' + esc(s.value) + '</b> ' + esc(s.label) + '</span>'; }).join('');
+    document.getElementById('cfg-footer-links').innerHTML = list(C.footerLinks).map(function (l) { return '<a href="' + esc(l.url) + '">' + esc(l.label) + '</a>'; }).join('');
+  })();
+</script>
 <script>
   (function () {
+    if (!document.querySelector('.doc > section[id]')) return;
     var root = document.documentElement;
     var motionOK = matchMedia('(prefers-reduced-motion: no-preference)');
 
