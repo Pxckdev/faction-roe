@@ -39,13 +39,13 @@ window.ROE = {
   pageTitle: "SOLS V2 | Faction Rules of Engagement",
   kicker: "SOLS V2 · FACTIONS",
   title: "Rules of Engagement",
-  tagline: "Stories of Los Santos",
+  tagline: "Feed The Streets",
   subtitle: "Every faction member is expected to know these rules. \"I didn't know\" won't be accepted.",
 
   // Small facts under the title. The number of sections is added automatically.
   stats: [
-    { value: "3", label: "faction tiers" },
-    { value: "24h", label: "report window" },
+    { value: "3", label: "Faction Tiers" },
+    { value: "24h", label: "Report Window" },
   ],
 
   // ----- Bottom of the page -----
