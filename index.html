@@ -140,6 +140,19 @@
   .garland i:nth-child(odd)::after { transform: rotate(8deg); }
   .garland i:nth-child(even)::after { transform: rotate(-8deg); }
 
+  /* Blurred background video (set in config.js). Oversized so the blurry edges stay off screen. */
+  .bg-video {
+    position: fixed; top: -8vh; left: -8vw; z-index: 0;
+    width: 116vw; height: 116vh;
+    object-fit: cover;
+    pointer-events: none;
+    filter: blur(var(--v-blur, 28px)) brightness(var(--v-bright, .4)) saturate(1.15);
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+  .bg-video.ready { opacity: 1; }
+  :root[data-theme="light"] .bg-video.ready { opacity: .22; filter: blur(var(--v-blur, 28px)) saturate(1.1); }
+
   /* Snowflakes are made by the script; each one falls slowly and sways */
   .snowfall { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
   .snowfall span {
@@ -596,6 +609,7 @@
 <body>
 <div class="progress" aria-hidden="true"><span></span></div>
 <a class="skip" href="#rules">Skip to rules</a>
+<video class="bg-video" id="bg-video" muted loop playsinline autoplay preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video>
 <div class="snowfall" id="snowfall" aria-hidden="true"></div>
 <div class="garland" id="garland" aria-hidden="true"></div>
 
@@ -748,6 +762,25 @@
     set('cfg-footer-note', C.footerNote);
     var stats = [{ value: C.sections.length, label: 'sections' }].concat(list(C.stats));
     document.getElementById('cfg-stats').innerHTML = stats.map(function (s) { return '<span><b>' + esc(s.value) + '</b> ' + esc(s.label) + '</span>'; }).join('');
+    // Blurred background video with no sound
+    var vid = document.getElementById('bg-video');
+    if (C.backgroundVideo) {
+      var blur = Number(C.backgroundBlur), dark = Number(C.backgroundDarkness);
+      if (!isNaN(blur)) vid.style.setProperty('--v-blur', Math.max(0, blur) + 'px');
+      if (!isNaN(dark)) vid.style.setProperty('--v-bright', Math.min(1, Math.max(0, 1 - dark)).toFixed(2));
+      vid.muted = true;           // no audio, and lets browsers autoplay it
+      vid.volume = 0;
+      vid.addEventListener('canplay', function () { vid.classList.add('ready'); }, { once: true });
+      vid.addEventListener('error', function () { vid.remove(); });
+      vid.src = C.backgroundVideo;
+      var p = vid.play();
+      if (p && p.catch) p.catch(function () { /* some phones block autoplay until a tap */
+        document.addEventListener('pointerdown', function () { vid.play().catch(function () {}); }, { once: true });
+      });
+    } else {
+      vid.remove();
+    }
+
     // Slow snowfall: each flake gets its own size, speed, sway and start point
     var snow = document.getElementById('snowfall');
     function letItSnow() {

@@ -27,6 +27,14 @@
 // =====================================================================
 
 window.ROE = {
+  // ----- Background video -----
+  // Put an .mp4 file in the same folder as index.html and write its name here.
+  // It plays on loop, with no sound, blurred so you can't really tell what it is.
+  // Leave it as "" for a plain black background.
+  backgroundVideo: "background.mp4",
+  backgroundBlur: 28,      // how blurry: 0 = sharp, 20 = soft, 40 = very blurry
+  backgroundDarkness: 0.6, // how dark: 0 = full brightness, 0.6 = dim, 0.9 = almost black
+
   // ----- Top of the page -----
   pageTitle: "SOLS V2 | Faction Rules of Engagement",
   kicker: "SOLS V2 · FACTIONS",
