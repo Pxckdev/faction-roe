@@ -70,7 +70,7 @@ window.ROE = {
             },
             {
               name: "Tier 1.5",
-              badge: "Up to 3 active beefs",
+              badge: "Up to 5 active beefs",
               text: "Once your faction becomes Tier 1.5, you may have active beef with up to three (3) other Tier 1.5 Factions at a time. This encourages factions to develop meaningful conflicts rather than attempting to involve themselves in every situation.",
             },
             {
