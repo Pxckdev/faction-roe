@@ -1,0 +1,1040 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TFB - V5 | Rules of Engagement</title>
+<meta name="description" content="TFB Faction Rules of Engagement.">
+<link rel="icon" type="image/webp" href="assets/tfb-logo.webp">
+<script>
+  // Apply saved/system theme before paint to avoid a flash.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('tfb-roe-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.dataset.theme = t;
+    document.documentElement.classList.add('js');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mr+De+Haviland&family=Climate+Crisis&display=swap">
+<style>
+  /* BR Shape (same files the reference loads), declared here so fallback text shows while it loads. */
+  @font-face { font-family: 'BR Shape'; font-weight: 400; font-display: swap; src: local('BR Shape'), url('https://fonts.cdnfonts.com/s/107508/BRShape-Regular-BF654c4e0770efa.woff') format('woff'); }
+  @font-face { font-family: 'BR Shape'; font-weight: 600; font-display: swap; src: local('BR Shape SemiBold'), url('https://fonts.cdnfonts.com/s/107508/BRShape-SemiBold-BF654c4e0768a21.woff') format('woff'); }
+  @font-face { font-family: 'BR Shape'; font-weight: 700; font-display: swap; src: local('BR Shape Bold'), url('https://fonts.cdnfonts.com/s/107508/BRShape-Bold-BF654c4e0759801.woff') format('woff'); }
+
+  :root {
+    --display: 'Climate Crisis', 'Arial Black', 'Helvetica Neue', Impact, sans-serif;
+    --body: 'BR Shape', 'Manrope', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+    --bar-h: 60px;
+    --col: 880px;
+    --ease: cubic-bezier(.22, 1, .36, 1);
+    color-scheme: dark;
+    --bg: #09090b;
+    --text: #f4f4f5;
+    --text-soft: rgba(244, 244, 245, .88);
+    --text-muted: rgba(244, 244, 245, .66);
+    --panel: #111113;
+    --row: #0b0b0d;
+    --border: rgba(63, 63, 70, .45);
+    --border-strong: rgba(82, 82, 91, .7);
+    --control: rgba(24, 24, 27, .7);
+    --control-hover: #27272a;
+    --accent: #ed1717;
+    --accent-soft: rgba(237, 23, 23, .07);
+    --accent-ring: rgba(237, 23, 23, .35);
+    --focus: #fafafa;
+    --shadow: 0 20px 40px rgba(0, 0, 0, .5);
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #f4f4f5;
+    --text: #09090b;
+    --text-soft: rgba(9, 9, 11, .86);
+    --text-muted: rgba(9, 9, 11, .64);
+    --panel: #ffffff;
+    --row: #fafafa;
+    --border: #e4e4e7;
+    --border-strong: #d4d4d8;
+    --control: #ffffff;
+    --control-hover: #f4f4f5;
+    --accent: #ed1717;
+    --accent-soft: rgba(237, 23, 23, .045);
+    --accent-ring: rgba(237, 23, 23, .25);
+    --focus: #09090b;
+    --shadow: 0 20px 40px rgba(9, 9, 11, .12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 26px;
+    transition: background-color .3s ease, color .3s ease;
+  }
+  a { color: inherit; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 6px; }
+  .skip { position: absolute; left: 16px; top: -100px; padding: 8px 12px; background: var(--text); color: var(--bg); border-radius: 8px; z-index: 30; }
+  .skip:focus { top: 12px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .progress { position: fixed; inset: 0 0 auto; height: 2px; z-index: 25; pointer-events: none; }
+  .progress span { display: block; height: 100%; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); }
+
+  /* Hero (centered) */
+  .hero { position: relative; max-width: var(--col); margin: 0 auto; padding: 48px 24px 8px; text-align: center; }
+  .logo { display: block; width: 150px; height: auto; margin: 0 auto 22px; user-select: none; }
+  h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(1.4rem, .6rem + 3vw, 2.6rem);
+    line-height: 1.08;
+    margin: 0;
+    overflow-wrap: break-word;
+  }
+  .subtitle { margin: 14px 0 0; font-size: 18px; line-height: 26px; color: var(--text-muted); }
+  .hero .subtitle.last-lap { margin-top: 4px; font-family: 'Mr De Haviland', cursive; font-size: clamp(1.3rem, 1.1rem + .6vw, 1.6rem); line-height: 1.2; color: var(--text); transform: scaleX(1.6); }
+  .theme-btn {
+    position: absolute; top: 24px; right: 24px;
+    font-size: 14px; line-height: 20px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--control);
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background-color .2s ease, border-color .2s ease, transform .15s var(--ease);
+  }
+  .theme-btn:hover { background: var(--control-hover); border-color: var(--border-strong); }
+  .theme-btn:active { transform: scale(.96); }
+  .theme-btn svg { width: 16px; height: 16px; transition: transform .5s var(--ease); }
+  .theme-btn:hover svg { transform: rotate(25deg); }
+  :root[data-theme="dark"] .i-moon, :root[data-theme="light"] .i-sun { display: none; }
+
+  /* Contents grid (centered, under the title) */
+  .contents { max-width: var(--col); margin: 0 auto; padding: 32px 24px 0; }
+  .contents-title { margin: 0 0 12px; text-align: center; font-size: 12px; line-height: 18px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+  .toc-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .toc-list a {
+    position: relative;
+    display: grid; grid-template-columns: 28px 1fr; gap: 6px; align-items: start;
+    height: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    font-size: 15px; line-height: 22px;
+    text-decoration: none;
+    transition: border-color .2s ease, background-color .2s ease, transform .25s var(--ease), color .2s ease;
+  }
+  .toc-list a span { color: var(--accent); font-variant-numeric: tabular-nums; font-weight: 600; }
+  .toc-list a:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+
+  /* Sticky jump bar */
+  .toc-bar {
+    position: sticky; top: 0; z-index: 20;
+    height: var(--bar-h);
+    margin-top: 20px;
+    padding: 10px 24px;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s ease, background-color .3s ease;
+  }
+  .toc-bar.stuck { border-bottom-color: var(--border); }
+  .toc-bar-in { position: relative; max-width: calc(var(--col) - 48px); margin: 0 auto; }
+  .toc-toggle {
+    width: 100%; height: 40px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 0 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--control);
+    cursor: pointer;
+    font-size: 14px; line-height: 20px;
+    transition: border-color .2s ease, background-color .2s ease;
+  }
+  .toc-toggle:hover { border-color: var(--border-strong); background: var(--control-hover); }
+  .toc-toggle .k { color: var(--text-muted); flex-shrink: 0; }
+  .toc-current { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+  .toc-current-num { color: var(--accent); font-weight: 600; flex-shrink: 0; }
+  .toc-toggle svg { width: 16px; height: 16px; flex-shrink: 0; transition: transform .3s var(--ease); }
+  .toc-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .toc-drop {
+    position: absolute; left: 0; right: 0; top: calc(100% + 8px);
+    max-height: 70vh; overflow: auto;
+    padding: 8px;
+    border-radius: 14px;
+    border: 1px solid var(--border-strong);
+    background: var(--panel);
+    box-shadow: var(--shadow);
+    opacity: 0; visibility: hidden; transform: translateY(-6px) scale(.985); transform-origin: 50% 0;
+    transition: opacity .2s ease, transform .25s var(--ease), visibility 0s linear .25s;
+  }
+  .toc-drop.open { opacity: 1; visibility: visible; transform: none; transition: opacity .2s ease, transform .25s var(--ease), visibility 0s; }
+  .toc-drop ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+  .toc-drop a {
+    position: relative;
+    display: grid; grid-template-columns: 28px 1fr; gap: 6px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 15px; line-height: 22px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: background-color .15s ease, color .15s ease;
+  }
+  .toc-drop a span { color: var(--accent); font-variant-numeric: tabular-nums; }
+  .toc-drop a:hover { color: var(--text); background: var(--control-hover); }
+  .toc-drop a.active { color: var(--text); background: var(--control); }
+  .toc-drop a.active::before { content: ""; position: absolute; left: 0; top: 11px; bottom: 11px; width: 2px; border-radius: 2px; background: var(--accent); }
+  .toc-drop a.active span { color: var(--accent); }
+  html:not(.js) .toc-bar { display: none; }
+
+  /* Main column */
+  .main { max-width: var(--col); margin: 0 auto; padding: 24px 24px 56px; }
+  .main:focus { outline: none; }
+
+  /* Section cards */
+  .doc { display: grid; gap: 24px; }
+  .doc > section {
+    counter-increment: sec;
+    position: relative;
+    min-width: 0;
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    transition: background-color .3s ease, border-color .3s ease;
+  }
+  section[id], .sub[id] { scroll-margin-top: calc(var(--bar-h) + 20px); }
+
+  .sec-head { text-align: center; padding: 0 44px 24px; border-bottom: 1px solid var(--border); }
+  h2.sec {
+    font-family: var(--display);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(1.2rem, .9rem + 1.8vw, 1.875rem);
+    line-height: 1.2;
+    margin: 0;
+    overflow-wrap: break-word;
+  }
+  h2.sec::before {
+    content: counter(sec, decimal-leading-zero);
+    display: block;
+    margin-bottom: 10px;
+    font-family: var(--body); font-weight: 600;
+    font-size: 13px; line-height: 18px; letter-spacing: .14em;
+    color: var(--accent);
+  }
+  .copy-wrap { position: absolute; top: 24px; right: 24px; display: flex; align-items: center; }
+  .copy {
+    width: 34px; height: 34px;
+    display: inline-grid; place-items: center;
+    padding: 0;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--control);
+    cursor: pointer;
+    transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .15s var(--ease);
+  }
+  .copy:hover { color: var(--text); background: var(--control-hover); border-color: var(--border-strong); }
+  .copy:active { transform: scale(.92); }
+  .copy svg { width: 16px; height: 16px; }
+  .copied {
+    position: absolute; right: 42px; top: 50%;
+    white-space: nowrap;
+    font-size: 12px; line-height: 16px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    background: var(--bg);
+    opacity: 0; pointer-events: none;
+    transform: translate(6px, -50%);
+    transition: opacity .2s ease, transform .3s var(--ease);
+  }
+  .copied.show { opacity: 1; transform: translate(0, -50%); }
+
+  .doc p { margin: 16px 0 0; color: var(--text-soft); }
+  .sec-head + p { margin-top: 24px; }
+  .doc strong { color: var(--text); font-weight: 700; }
+
+  .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 20px; }
+  .badge {
+    display: inline-block;
+    font-size: 12px; line-height: 16px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    background: var(--row);
+    color: var(--text-soft);
+    white-space: nowrap;
+  }
+
+  /* Subsections: centered headings, flat groups separated by dividers */
+  .sub { margin-top: 32px; padding-top: 28px; border-top: 1px dashed var(--border); }
+  .sec-head + .sub { margin-top: 0; border-top: 0; }
+  .sub-head { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+  h3 { font-family: var(--body); font-size: 20px; line-height: 28px; font-weight: 600; margin: 0; }
+  h3::after { content: ""; display: block; width: 24px; height: 3px; margin: 10px auto 0; border-radius: 2px; background: var(--accent); }
+  .sub-head + p { margin-top: 16px; }
+
+  /* Rule rows */
+  .rules { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 8px; }
+  .rules > li {
+    position: relative;
+    padding: 12px 16px 12px 36px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--row);
+    color: var(--text-soft);
+    overflow-wrap: break-word;
+    transition: border-color .2s ease, transform .25s var(--ease);
+  }
+  .rules > li:hover { border-color: var(--border-strong); transform: translateX(3px); }
+  .rules > li::before { content: ""; position: absolute; left: 16px; top: 22px; width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); opacity: .7; transition: background-color .2s ease, opacity .2s ease; }
+  .rules > li:hover::before { background: var(--accent); opacity: 1; }
+  .rules ul { margin: 8px 0 0; padding-left: 4px; list-style: none; display: grid; gap: 6px; }
+  .rules ul li { position: relative; padding-left: 18px; }
+  .rules ul li::before { content: "–"; position: absolute; left: 0; opacity: .6; }
+
+  /* Callouts */
+  .callout {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-strong);
+    background: var(--row);
+  }
+  .callout p { margin: 6px 0 0; }
+  .callout .label + p { margin-top: 2px; }
+  .callout .label { display: block; font-size: 14px; line-height: 22px; font-weight: 600; color: var(--text); }
+  .callout .rules { margin-top: 8px; }
+  .callout .rules > li { background: transparent; }
+  .callout.warn { border-color: var(--accent-ring); background: var(--accent-soft); }
+  .callout.warn .label { color: var(--accent); }
+  .rules > li .callout { margin-top: 12px; background: var(--panel); }
+
+  /* Faction stages: a three-step track */
+  .stages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; counter-reset: stage; }
+  .stages .sub {
+    counter-increment: stage;
+    position: relative;
+    margin: 0; padding: 20px 18px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--row);
+    text-align: center;
+    transition: border-color .2s ease, transform .25s var(--ease);
+  }
+  .stages .sub:hover { border-color: var(--border-strong); transform: translateY(-3px); }
+  .stages .sub::before {
+    content: "Stage " counter(stage, decimal-leading-zero);
+    display: block; margin-bottom: 8px;
+    font-size: 12px; line-height: 18px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .stages h3::after { display: none; }
+  .stages .sub p { margin-top: 12px; font-size: 15px; line-height: 24px; }
+
+  /* Attack type quick links */
+  .chips { list-style: none; margin: 16px 0 4px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .chips a {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    height: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--row);
+    font-size: 14px; line-height: 20px; font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color .2s ease, background-color .2s ease, transform .25s var(--ease);
+  }
+  .chips a::after { content: "↓"; color: var(--text-muted); font-weight: 400; transition: transform .25s var(--ease), color .2s ease; }
+  .chips a:hover { border-color: var(--border-strong); background: var(--control-hover); transform: translateY(-2px); }
+  .chips a:hover::after { transform: translateY(2px); color: var(--accent); }
+
+  footer { margin-top: 32px; text-align: center; font-size: 14px; color: var(--text-muted); }
+  footer a { text-underline-offset: 3px; }
+
+  /* ---------- Motion (only when the user allows it) ---------- */
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    @keyframes drop-in { from { opacity: 0; transform: translateY(-10px) scale(.96); } to { opacity: 1; transform: none; } }
+    .hero .logo { animation: drop-in .8s var(--ease) both; }
+    .hero h1 { animation: rise .8s var(--ease) .12s both; }
+    .hero .subtitle { animation: rise .8s var(--ease) .22s both; }
+    .contents { animation: rise .8s var(--ease) .32s both; }
+
+    /* Scroll reveal: JS adds .reveal only when IntersectionObserver exists, then .in when visible. */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .7s var(--ease); transition-delay: var(--d, 0s); }
+    .reveal.in { opacity: 1; transform: none; }
+    .rules > li.reveal.in { transition: opacity .6s ease, transform .7s var(--ease), border-color .2s ease; transition-delay: var(--d, 0s), var(--d, 0s), 0s; }
+
+    /* Highlight whatever was jumped to */
+    @keyframes ring { 0% { box-shadow: 0 0 0 0 var(--accent-ring); border-color: var(--accent); } 70% { box-shadow: 0 0 0 10px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+    @keyframes bar-grow { 0% { width: 24px; } 35% { width: 72px; } 100% { width: 24px; } }
+    .doc > section.flash { animation: ring 1.4s var(--ease); }
+    .sub.flash { animation: none; }
+    .sub.flash > .sub-head { animation: rise .6s var(--ease); }
+    .sub.flash h3::after { animation: bar-grow 1.4s var(--ease); }
+    .stages .sub.flash { animation: ring 1.4s var(--ease); }
+    .doc > section.flash h2.sec { animation: rise .6s var(--ease); }
+  }
+
+  @media (max-width: 760px) {
+    :root { --bar-h: 56px; }
+    .hero { padding: 64px 16px 4px; }
+    .theme-btn { top: 16px; right: 16px; padding: 8px; }
+    .theme-btn .lbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .logo { width: 104px; margin-bottom: 16px; }
+    .subtitle { font-size: 16px; margin-top: 10px; }
+    .contents { padding: 24px 16px 0; }
+    .toc-list { grid-template-columns: minmax(0, 1fr); }
+    .toc-list a { padding: 10px 12px; }
+    .toc-bar { padding: 8px 16px; margin-top: 16px; }
+    .toc-toggle .k { display: none; }
+    .main { padding: 16px 16px 40px; }
+    .doc { gap: 16px; }
+    .doc > section { padding: 24px 16px; }
+    .sec-head { padding: 0 36px 20px; }
+    .copy-wrap { top: 16px; right: 12px; }
+    .sub { margin-top: 28px; padding-top: 24px; }
+    h3 { font-size: 18px; line-height: 26px; }
+    .rules > li { padding: 10px 12px 10px 28px; }
+    .rules > li::before { left: 12px; top: 20px; width: 5px; height: 5px; }
+    .callout { padding: 12px; }
+    .stages, .chips { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 420px) {
+    .sec-head { padding: 0 0 20px; }
+    .copy-wrap { position: static; justify-content: center; margin-top: 14px; }
+    .copied { right: auto; left: calc(50% + 24px); }
+    h2.sec { overflow-wrap: anywhere; }
+  }
+  @media (min-width: 761px) and (max-width: 900px) {
+    .chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media print {
+    :root, :root[data-theme] {
+      --bg: #fff; --text: #000; --text-soft: #111; --text-muted: #444;
+      --panel: #fff; --row: #fff; --border: #ccc; --border-strong: #999;
+      --accent: #ed1717; --accent-soft: #fff; --bar-h: 0px;
+    }
+    html { scroll-behavior: auto; }
+    body { font-size: 11pt; line-height: 1.5; }
+    .theme-btn, .contents, .toc-bar, .copy-wrap, .chips, footer, .skip, .progress { display: none !important; }
+    .hero, .main { max-width: none; padding: 0; }
+    .logo { width: 90px; }
+    .main { margin-top: 16px; }
+    .doc { display: block; }
+    .doc > section { border: 0; padding: 0; margin-top: 28px; }
+    .stages { grid-template-columns: 1fr; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    h2.sec, h3, .sec-head, .sub-head { break-after: avoid; page-break-after: avoid; }
+    .rules > li, .callout, .stages .sub { break-inside: avoid; page-break-inside: avoid; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+<a class="skip" href="#rules">Skip to rules</a>
+<header class="hero">
+  <img class="logo" src="assets/tfb-logo.webp" width="400" height="400" alt="TFB" draggable="false">
+  <h1>TFB - V5<br>RULES OF ENGAGEMENT</h1>
+  <p class="subtitle last-lap">Last Lap</p>
+  <button type="button" class="theme-btn" id="theme-btn">
+    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <span class="lbl">Light mode</span>
+  </button>
+</header>
+
+<nav class="contents" aria-labelledby="contents-title">
+  <h2 class="contents-title" id="contents-title">Jump to section</h2>
+  <ol class="toc-list" id="toc-list">
+    <li><a href="#faction-progression"><span>01</span>Faction Progression &amp; Beef System</a></li>
+    <li><a href="#faction-attacks"><span>02</span>Faction Attacks</a></li>
+    <li><a href="#attack-regulations"><span>03</span>Attack Regulations</a></li>
+    <li><a href="#bullying-courtesy"><span>04</span>Bullying &amp; Courtesy</a></li>
+    <li><a href="#pinpointing-escalation"><span>05</span>Pinpointing &amp; Escalation</a></li>
+    <li><a href="#additional-rules"><span>06</span>Additional Rules</a></li>
+    <li><a href="#report-regulations"><span>07</span>Report Regulations</a></li>
+    <li><a href="#weapon-trading"><span>08</span>Weapon Trading &amp; Refill Guidelines</a></li>
+  </ol>
+</nav>
+
+<div class="toc-bar" id="toc-bar">
+  <div class="toc-bar-in">
+    <button type="button" class="toc-toggle" id="toc-toggle" aria-expanded="false" aria-controls="toc-drop">
+      <span class="k">Jump to section</span>
+      <span class="toc-current-num" id="toc-current-num">01</span>
+      <span class="toc-current" id="toc-current">Faction Progression &amp; Beef System</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <nav class="toc-drop" id="toc-drop" aria-label="Jump to section"></nav>
+  </div>
+</div>
+
+<main class="main" id="rules" tabindex="-1">
+  <article class="doc">
+
+    <!-- 1 -->
+    <section id="faction-progression" aria-labelledby="h-faction-progression">
+      <div class="sec-head">
+        <h2 class="sec" id="h-faction-progression">Faction Progression &amp; Beef System</h2>
+      </div>
+      <p>Factions are expected to gradually build their presence within the server rather than immediately entering multiple conflicts. Each stage of faction progression comes with different limits on how many active beefs a faction may have.</p>
+      <div class="stages">
+        <div class="sub" id="tier-1">
+          <div class="sub-head"><h3>Tier 1</h3></div>
+          <p>This stage is focused on developing your faction's identity, building connections, and creating RP with other factions. Use this time to establish relationships, alliances, rivalries, and storylines before becoming a Tier 1.5 Faction.</p>
+        </div>
+        <div class="sub" id="tier-1-5">
+          <div class="sub-head"><h3>Tier 1.5</h3><span class="badge">Up to 3 active beefs</span></div>
+          <p>Once your faction becomes Tier 1.5, you may have active beef with up to three (3) other Tier 1.5 Factions at a time. This encourages factions to develop meaningful conflicts rather than attempting to involve themselves in every situation.</p>
+        </div>
+        <div class="sub" id="tier-2">
+          <div class="sub-head"><h3>Tier 2</h3><span class="badge">Three-beef limit removed</span></div>
+          <p>Once your faction reaches Tier 2, the three-beef limit is removed. Tier 2 factions may develop conflicts with any faction that is Tier 1.5 status or higher, provided all other ROE and escalation requirements are followed.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section id="faction-attacks" aria-labelledby="h-faction-attacks">
+      <div class="sec-head">
+        <h2 class="sec" id="h-faction-attacks">Faction Attacks</h2>
+      </div>
+      <p>Faction Attacks occur when an attacking faction creates a hostile environment toward another faction. Once accepted into a weapon scheme, faction attacks are limited to firearms unless otherwise specified. All attacks must escalate realistically and organically under all circumstances.</p>
+      <p>There are four different attack types, which operate under two separate cooldown systems:</p>
+      <ul class="chips" aria-label="Attack types">
+        <li><a href="#deathmatching-attacks">Deathmatching Attacks</a></li>
+        <li><a href="#robberies">Robberies</a></li>
+        <li><a href="#hostile-environment">Hostile Environment</a></li>
+        <li><a href="#mutual-combat">Mutual Combat</a></li>
+      </ul>
+
+      <div class="sub" id="deathmatching-attacks">
+        <div class="sub-head"><h3>Deathmatching Attacks</h3><span class="badge">4+ on set turf</span></div>
+        <p>Deathmatching Attacks are faction attacks committed strictly through the use of firearms. This includes shooting in the air, at a person, or anywhere on a faction's set turf.</p>
+        <ul class="rules">
+          <li>If you are attacking a faction and there are 4 or more members/users on their set turf, you may initiate a Deathmatching Attack.</li>
+          <li>There is a 3-day cooldown between Deathmatching Attacks.</li>
+          <li>Tier 2 factions and higher may conduct 2 Deathmatching Attacks per day.</li>
+          <li>Deathmatching Attacks must still be conducted organically and cannot be used to force unnecessary conflict.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="robberies">
+        <div class="sub-head"><h3>Robberies</h3><span class="badge">6-hour cooldown</span></div>
+        <p>A Robbery is considered an interaction when a faction member attempts to rob another player.</p>
+        <ul class="rules">
+          <li>Factions have a 6-hour cooldown between Robberies.</li>
+          <li>If a Robbery occurs within another faction's set turf, it will count as a Faction Attack, as it creates a hostile environment.</li>
+          <li>Robberies are expected to occur organically and should only be initiated when there is a clear or reasonably identifiable advantage.</li>
+          <li>Acceptable examples include 2v1 or 4v2 situations.</li>
+          <li>Attempting to force robberies in situations such as 4v3 or 4v4 is not permitted under the Server Guidelines.</li>
+        </ul>
+        <div class="callout">
+          <span class="label">Exception</span>
+          <p>The numbers rule does not apply in every situation. For example, if you enter your own faction's turf and there is a large crowd present, or if you enter a house where the number of occupants is unknown, you cannot reasonably be expected to know the exact numbers involved.</p>
+          <p>However, outside of situations where the numbers are genuinely unknown or naturally skewed, factions should not intentionally force a numerical advantage simply to justify a robbery. Robberies should happen naturally through RP rather than being treated as a way to manufacture conflict.</p>
+        </div>
+      </div>
+
+      <div class="sub" id="hostile-environment">
+        <div class="sub-head"><h3>Hostile Environment</h3></div>
+        <p>A Hostile Environment occurs when a faction enters another faction's turf with the intent to create hostility or provoke a reaction.</p>
+        <p>Hostile actions may include, but are not limited to:</p>
+        <ul class="rules">
+          <li>Putting a member of the opposing faction into Death Mode.</li>
+          <li>Chasing an opposing faction member on foot or in a vehicle.</li>
+          <li>Being verbally hostile toward the opposing faction, such as dissing their set.</li>
+          <li>Repeatedly spinning an opposing faction's turf, if the opposing faction reacts to the behavior.</li>
+          <li>Entering an opposing faction's turf with the intent to instigate or provoke them into attacking.</li>
+          <li>Heavily trooping through the turf of a faction you have an established beef with in a manner clearly intended to provoke a response.</li>
+        </ul>
+        <p>If a defending faction chooses to react to a Hostile Environment by engaging the opposing faction, the interaction will count as an Attack for the faction that created the Hostile Environment.</p>
+        <p>The faction responsible for creating the Hostile Environment will subsequently be placed under the 12-hour Deathmatching Attack cooldown.</p>
+      </div>
+
+      <div class="sub" id="mutual-combat">
+        <div class="sub-head"><h3>Mutual Combat</h3><span class="badge">5+ members per faction</span></div>
+        <p>Mutual Combat occurs when two crowded factions, consisting of 5 or more members from each faction, engage in an interaction within the same vicinity that creates a hostile environment and could reasonably escalate into a shootout.</p>
+        <p>If a shootout occurs, the faction that engages first will be considered the attacking faction.</p>
+        <div class="callout">
+          <span class="label">Examples:</span>
+          <ul class="rules">
+            <li>Two factions unexpectedly encounter one another at a gas station or clothing store, resulting in an organic escalation into a shootout.</li>
+          </ul>
+        </div>
+        <p>When Mutual Combat results in a shootout, both participating factions will be placed under the 12-hour Deathmatching Attack cooldown.</p>
+        <div class="callout warn">
+          <span class="label">Restriction</span>
+          <p>Mutual Combat cannot take place on a factions set turf.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section id="attack-regulations" aria-labelledby="h-attack-regulations">
+      <div class="sec-head">
+        <h2 class="sec" id="h-attack-regulations">Attack Regulations</h2>
+      </div>
+      <p>Before participating in any faction attack or shootout, all members are expected to follow the regulations below. Failure to follow these regulations may result in individual or faction punishment.</p>
+
+      <div class="sub" id="character-development">
+        <div class="sub-head"><h3>Character Development</h3></div>
+        <ul class="rules">
+          <li>Before participating in a shootout, you must have fully developed your character. This is a strict requirement.</li>
+          <li>Your character must have realistic development toward:
+            <ul>
+              <li>Possessing and/or obtaining a firearm.</li>
+              <li>Becoming involved in illegal activity.</li>
+              <li>Developing a legitimate negative interaction or conflict with the opposing faction.</li>
+            </ul>
+          </li>
+          <li>Gunplay should never be the starting point of a character's story. There must be sufficient RP leading up to the conflict.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="72-hour-requirement">
+        <div class="sub-head"><h3>72-Hour Requirement</h3><span class="badge">72 hours (3 days)</span></div>
+        <ul class="rules">
+          <li>You must wait at least 72 hours (3 days) after creating a character and/or joining a faction before participating in a faction attack.</li>
+          <li>Failure to meet this requirement may result in punishment.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="attack-size">
+        <div class="sub-head"><h3>Attack Size</h3><span class="badge">4 participants</span></div>
+        <ul class="rules">
+          <li>A maximum of 4 members may intentionally participate in a faction attack.</li>
+          <li>Exceptions may apply when:
+            <ul>
+              <li>The attack occurs on your faction's set turf after the turf has been made hostile.</li>
+              <li>The interaction qualifies as Mutual Combat.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sub" id="maximum-kills">
+        <div class="sub-head"><h3>Maximum Kills</h3><span class="badge">3 intentional kills</span></div>
+        <ul class="rules">
+          <li>During a faction attack, you may intentionally kill a maximum of 3 members of the opposing faction.</li>
+          <li>If a fourth user is unintentionally killed, the final victim may be revived and the attacking faction will not receive a refund.</li>
+          <li>This regulation does not apply to shootouts. If both parties actively engage in a shootout, no characters will be revived regardless of whether every participant was armed.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="turf-defense">
+        <div class="sub-head"><h3>Turf Defense</h3></div>
+        <p>Defense within a faction's turf must remain realistic and reasonable.</p>
+        <p>The following are prohibited or heavily discouraged:</p>
+        <ul class="rules">
+          <li>Creating extended or deliberate roadblocks.</li>
+          <li>Constantly patrolling the turf on foot or in vehicles solely to defend it.</li>
+          <li>Camping on rooftops.</li>
+          <li>Any other tactic that is deemed unrealistic or excessively defensive by IFM.</li>
+        </ul>
+        <p>Tactics that are considered Playing to Win or Subpar Roleplay may result in faction punishment.</p>
+      </div>
+
+      <div class="sub" id="double-attacks">
+        <div class="sub-head"><h3>Double Attacks</h3></div>
+        <ul class="rules">
+          <li>If the roleplay surrounding an attack is sufficient and the opposing faction has not slid back within 120 hours (5 days), a faction may conduct a double attack.</li>
+          <li>You may not conduct another Deathmatching Attack until 5 full calendar days have passed.</li>
+          <li>This rule applies only to Deathmatching Attacks and does not apply to Robberies.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="shooters-pov">
+        <div class="sub-head"><h3>Shooter's POV</h3><span class="badge">3-minute minimum</span></div>
+        <ul class="rules">
+          <li>A Shooter's POV with sound must be provided whenever requested by IFM or staff.</li>
+          <li>Failure to provide the required POV may result in the report being decided without your evidence and may lead to faction punishment.</li>
+          <li>POVs must be recorded using GeForce Experience/NVIDIA or AMD recording software.</li>
+          <li>The required recording must be at least 3 minutes long.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="turf-camping">
+        <div class="sub-head"><h3>Turf Camping</h3></div>
+        <ul class="rules">
+          <li>You may not intentionally linger around an opposing faction's turf after an attack or interaction.</li>
+          <li>Remaining in or around a turf without legitimate RP justification may be considered Turf Camping.</li>
+          <li>Turf Camping is ultimately subject to FM discretion.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="scouting-spinning">
+        <div class="sub-head"><h3>Scouting &amp; Spinning</h3></div>
+        <p>Members who are not actively participating in a faction attack may not scout or spin an opposing faction's turf.</p>
+        <p>This applies to:</p>
+        <ul class="rules">
+          <li>Defense.</li>
+          <li>Backdoor roleplay, unless you are the player actively lining the victim.</li>
+          <li>Gathering information for an upcoming attack or interaction.</li>
+          <li>Relaying information about opposing faction members to your faction.</li>
+        </ul>
+        <p>Scouting is defined as intentionally circling or monitoring an opposing faction's turf, or your own turf, for the primary purpose of gathering information and relaying it to your faction.</p>
+        <p>Scouting is prohibited both on foot and in vehicles.</p>
+      </div>
+
+      <div class="sub" id="probationary-factions">
+        <div class="sub-head"><h3>Probationary Factions</h3></div>
+        <ul class="rules">
+          <li>You may not attack a faction that is currently on probation.</li>
+          <li>Probationary factions should not participate in gunplay until their probationary period has ended.</li>
+          <li>This includes set-ups, lines, and other forms of faction gunplay.</li>
+          <li>An exception may apply if the probationary faction directly brings the situation upon themselves, such as through disrespect toward deceased members.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="fist-fights-brawls">
+        <div class="sub-head"><h3>Fist Fights &amp; Brawls</h3></div>
+        <ul class="rules">
+          <li>Fist fights are not considered faction attacks once a faction has been Tiered or has completed probation.</li>
+          <li>For Tiered/non-probationary factions, fist fights only count as an interaction.</li>
+          <li>During probation, however, any physical altercation where one faction outnumbers the opposing party will count as an attack.</li>
+          <li>This includes brawls, jumping, and similar situations.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="non-faction-members">
+        <div class="sub-head"><h3>Non-Faction Members</h3></div>
+        <ul class="rules">
+          <li>Users who are not members of a faction may not participate in faction attacks.</li>
+          <li>The exception is users participating through the Illegal Civilian Scheme.</li>
+          <li>Illegal Civilians may participate only when they have sufficient evidence and RP established through backdoor roleplay.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="masks-identification">
+        <div class="sub-head"><h3>Masks &amp; Identification</h3></div>
+        <ul class="rules">
+          <li>If a member of an opposing faction is wearing a mask, they may still be held liable for an attack.</li>
+          <li>This applies whether they are on the opposing faction's turf or in a public area, regardless of the type of mask being worn.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="vehicles">
+        <div class="sub-head"><h3>Vehicles</h3></div>
+        <ul class="rules">
+          <li>Faction attacks conducted from electric vehicles or motorcycles are strictly prohibited.</li>
+          <li>All forms of motorcycles except Mopeds and Citi Bikes are prohibited from being used during faction attacks.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="post-attack-server-time">
+        <div class="sub-head"><h3>Post-Attack Server Time</h3><span class="badge">30 minutes</span></div>
+        <ul class="rules">
+          <li>After initiating a faction attack, you must remain in the server for at least 30 minutes.</li>
+          <li>The same requirement applies to members participating in the defense of a faction attack.</li>
+          <li>Leaving the server before the required time may result in punishment.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section id="bullying-courtesy" aria-labelledby="h-bullying-courtesy">
+      <div class="sec-head">
+        <h2 class="sec" id="h-bullying-courtesy">Bullying &amp; Courtesy</h2>
+      </div>
+      <p>The purpose of these regulations is to encourage factions below Tier 1 to develop meaningful roleplay throughout the server while preventing established factions from circumventing courtesy rules or unnecessarily bullying non-tiered factions.</p>
+      <ul class="rules">
+        <li>Tier 2 loot may only be used against factions that are Tier 1 or higher when conducting an Attack.</li>
+        <li>Tier 1.5 weapons are limited to a maximum of 2 weapons when engaging a non-tiered faction.</li>
+        <li>Any violation of these regulations may result in faction discipline, regardless of whether a formal report is submitted.</li>
+      </ul>
+      <p>Tier 1 and Tier 1.5 factions should prioritize building ROLEPLAY throughout the server before becoming eligible for Tier 2.</p>
+      <p>There should also be a reasonable level of respect and/or fear toward established Tier 2 factions. Realistically, an inexperienced group would not see an established faction openly displaying multiple rifles and act completely fearless without considering the potential consequences or their own limitations.</p>
+      <p>Before becoming a Tiered faction, you should be actively roleplaying around the fact that established factions have more experience, resources, and influence than your own. This system exists to maintain a fair environment for both new and experienced factions within the Faction Scheme.</p>
+    </section>
+
+    <!-- 5 -->
+    <section id="pinpointing-escalation" aria-labelledby="h-pinpointing-escalation">
+      <div class="sec-head">
+        <h2 class="sec" id="h-pinpointing-escalation">Pinpointing &amp; Escalation</h2>
+      </div>
+
+      <div class="sub" id="pinpointing">
+        <div class="sub-head"><h3>Pinpointing</h3></div>
+        <p>Pinpointing is the act of gathering information about a faction or individual with the intent of potentially using that information to conduct a future attack.</p>
+        <p>Pinpointing must be based exclusively on legitimate in-character knowledge.</p>
+        <p>Information that may be used for pinpointing includes, but is not limited to:</p>
+        <ul class="rules">
+          <li>Known hangout locations.</li>
+          <li>Apartments or residences.</li>
+          <li>Vehicles.</li>
+          <li>Clothing or recognizable outfits.</li>
+          <li>Known faction members or notable individuals.</li>
+          <li>Other locations or identifying information discovered through legitimate RP.</li>
+        </ul>
+        <p>If a faction has obtained legitimate in-character knowledge that a faction member or notable member is located at one of these locations, they may act on that information.</p>
+        <div class="callout">
+          <span class="label">Example:</span>
+          <p>A faction observes two known members of an opposing faction enter an apartment. The location has now been established through IC knowledge, meaning the faction may enter the apartment without requiring additional pinpointing.</p>
+        </div>
+        <p>Nametags may also be used as a form of pinpointing when the information is reasonably obtained through the RP situation.</p>
+      </div>
+
+      <div class="sub" id="poor-escalation">
+        <div class="sub-head"><h3>Poor Escalation</h3><span class="badge">7 meaningful interactions</span></div>
+        <p>Faction attacks must have sufficient roleplay, reasoning, and escalation behind them.</p>
+        <p>Any attack that is initiated without proper buildup or a sufficient reason may be considered Poor Escalation and can result in faction punishment.</p>
+        <p>As a general requirement, you should have at least 7 meaningful interactions with the individual involved before escalating to a faction attack. These interactions must contribute to the development of the conflict and cannot simply be manufactured for the purpose of reaching the required number.</p>
+      </div>
+
+      <div class="sub" id="negative-interactions">
+        <div class="sub-head"><h3>Negative Interactions</h3><span class="badge">7 negative interactions</span></div>
+        <ul class="rules">
+          <li>A faction member must have at least 7 meaningful negative interactions with an opposing faction member before engaging in a shootout.</li>
+          <li>Simple arguments or verbal exchanges do not count toward these interactions.</li>
+          <li>The interactions must be legitimate and contribute to the development of the conflict.</li>
+          <li>This requirement is void if gunplay has already occurred between the players.</li>
+        </ul>
+      </div>
+
+      <div class="sub" id="avoiding-roleplay">
+        <div class="sub-head"><h3>Avoiding Roleplay / Playing to Win</h3></div>
+        <p>If an opposing faction member enters a faction's set turf and is identified as a member of that faction, whether through their appearance, clothing, mask, or other recognizable characteristics, they may be engaged through RP.</p>
+        <p>If the individual deliberately avoids or refuses legitimate roleplay in an attempt to escape the situation or gain an advantage, this may be considered Playing to Win.</p>
+        <p>If the player is clearly identified as an opposing faction member and is intentionally refusing the RP interaction, the defending faction may have full authority to kill the player.</p>
+        <p>This authority should only be exercised when the circumstances clearly demonstrate an intentional attempt to avoid legitimate roleplay. It should not be used as an excuse to bypass normal escalation requirements.</p>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section id="additional-rules" aria-labelledby="h-additional-rules">
+      <div class="sec-head">
+        <h2 class="sec" id="h-additional-rules">Additional Rules</h2>
+      </div>
+      <ul class="rules">
+        <li>As a Faction Member, you are only allowed to roleplay injuries if you are shot and do not enter the Death Script. If you enter the Death Script from being shot, you are required to Character Kill (CK) after having received your one-time PK (if you qualify). This also applies to situations such as tripping, vehicle accidents, and similar incidents. If a player enters the Death Script due to a confirmed server-sided issue, the outcome will be left to Administrator discretion. This includes falling through the map while out of combat or dying due to server-sided/invisible collisions.</li>
+        <li><strong>Backdoor Roleplay:</strong> All revenge, conflict, or hostile actions must be based on developed, realistic, and meaningful in-character reasoning. You must demonstrate ongoing RP and IC development leading up to your actions. Using thin or one-line justifications, such as "he killed my best friend," without proper in-character investigation, RP progression, or evidence of the connection will be considered Backdoor RP and may result in administrative action. The member committing the backdoor or lining a user does not count toward the 4-user attack limit, unless the member lining the user shoots or otherwise utilizes a weapon.
+          <div class="callout">
+            <span class="label">Example of acceptable Backdoor Roleplay:</span>
+            <p>Your character's brother is killed. You witness the murder, gather IC clues over time, speak with others, uncover information, and build a storyline of revenge through escalating RP and faction development.</p>
+          </div>
+        </li>
+        <li>The maximum number of people allowed to participate in a brawl is 8 people per faction. This includes allies.</li>
+        <li>At public gatherings, parties, or get-togethers that have been advertised through the server, factions are not permitted to shoot, start beef, or intentionally cause drama. The conflict must be taken to a different location where the situation can properly develop through RP.</li>
+        <li>Multiple users being banned for Malicious Activity, Third-Party Modifications, or other serious offenses may be judged as Poor Representation of Faction Roleplay. Final judgment will always remain at Faction Management discretion.</li>
+        <li>Any behavior that is deemed by IFM to be a poor representation of Faction Roleplay may result in faction punishment.</li>
+        <li>If a faction has not applied to become a faction, gangs or factions may not be formally established. A faction may begin its development and participate in faction activity once it has an active thread.</li>
+        <li>Faction members are not permitted to enter Local OOC or act out of character without legitimate justification. Faction Management may punish an individual or their faction if they enter Local OOC simply because they are unable to take a loss. Players may also report faction members who engage in this behavior. Allow the situation to develop before asking questions; do not disrupt the flow of roleplay.</li>
+        <li>You may not attempt to take someone's inventory items after knocking them out. Only physical belongings such as shoes, clothing, etc. may be taken, and the action must be properly roleplayed through /me and /do.</li>
+        <li>Kidnapping is considered part of robbing. You may kidnap and rob another player, but you may not kidnap and kill. This also includes Torture Roleplay.</li>
+        <li>If a user is outnumbered while being surrounded, circled, cornered, or otherwise placed in a situation where resistance would be unreasonable, they must value their life and display appropriate fear, regardless of whether they are carrying a firearm.</li>
+        <li>Usage of F-Chat is strictly limited to out-of-character announcements from High Council or faction Leadership. Any in-character usage or metagaming through F-Chat will result in a Faction Strike.</li>
+        <li><strong>Water Evading:</strong> Factions may not use water as a means of intentionally escaping from Police or an opposing faction. If caught, your character will be automatically CK’d.</li>
+        <li><strong>Cop Baiting:</strong> Factions may not intentionally bait or use distractions against Police in an attempt to avoid jail time or otherwise abuse server limitations. Punishment will depend on the severity of the situation.</li>
+        <li>Depending on the severity, a faction may receive a Strike or face Closure if there are multiple instances of members repeatedly provoking others within a Greenzone.</li>
+        <li>Factions may be punished for Playing to Win or Avoiding Roleplay, depending on the severity and Faction Management's discretion.</li>
+        <li>Any firearm whose serial number has not been properly registered with Faction Management may result in a ban and/or faction strike.</li>
+        <li>Player Kills (PKs) are defined as being able to continue roleplaying after entering the Death Script. A PK is only permitted once per character, provided the character was not shot in the head or neck and did not sustain more than two (2) gunshot wounds to the chest.</li>
+        <li><strong>PK Injury Roleplay:</strong> Characters who receive a PK must realistically roleplay their injuries. Depending on the severity, injuries must be roleplayed for 12–72 hours of active in-game time. Offline time does not count. Failure to properly roleplay PK injuries may result in FM forcing a Character Kill (CK).</li>
+        <li>NPC-owned stores located on a faction's turf, such as Clothing Stores, Barbershops, Gas Stations, etc., are not considered Greenzones under ROE. Players may initiate and conduct attacks inside or outside of these locations. Player-Owned Businesses on faction turf are still considered Greenzones; this exception only applies to NPC-owned stores. There should still be common courtesy toward players who are genuinely changing their clothing or using the store for its intended purpose. Do not simply shoot everyone inside a clothing store without consideration for the RP occurring there. Faction Management has final discretion regarding situations involving this rule.</li>
+        <li><strong>Untrusted Member Limit:</strong> A faction may have no more than 5 members holding the Untrusted Member rank at any given time.</li>
+        <li>You may shoot if you are placed in imminent danger, such as having a firearm pulled on you, being actively aimed at, or having your vehicle intentionally rammed. In these situations, the shooting will not count as an Attack for either side, subject to Faction Management discretion.</li>
+        <li>Upon firing a weapon anywhere within the server, you are automatically placed under a universal 12-hour Player Cooldown. You must wait 12 hours before participating in another shootout. This cooldown does not apply when you are acting in defense.</li>
+      </ul>
+    </section>
+
+    <!-- 7 -->
+    <section id="report-regulations" aria-labelledby="h-report-regulations">
+      <div class="sec-head">
+        <h2 class="sec" id="h-report-regulations">Report Regulations</h2>
+      </div>
+      <div class="badges"><span class="badge">24-hour deadline</span></div>
+      <ul class="rules">
+        <li>Faction reports must be submitted within 24 hours of the incident.</li>
+        <li>Filing a report solely out of retaliation because a situation did not go as planned is prohibited.</li>
+        <li>If you have an active report against another faction, you must not participate in any form of negative interaction with that faction until the report has received and posted a verdict. This applies to both factions involved.</li>
+        <li>Public bashing and/or OOC toxicity toward a faction or its roleplay may result in punishment. If you have an issue with a faction, make a report or leave the situation alone. Maintain common courtesy toward other factions.</li>
+        <li>Factions may be prohibited from selling firearms and/or drugs while an active faction report is pending.</li>
+      </ul>
+    </section>
+
+    <!-- 8 -->
+    <section id="weapon-trading" aria-labelledby="h-weapon-trading">
+      <div class="sec-head">
+        <h2 class="sec" id="h-weapon-trading">Weapon Trading &amp; Refill Guidelines</h2>
+      </div>
+      <ul class="rules">
+        <li>Any abuse of the refill, trading, or robbery systems may result in an instant de-tier or other disciplinary action, at Faction Management's discretion.</li>
+        <li>Weapons may only be traded or purchased once a faction reaches Tier 1.5. Upon reaching Tier 1.5, a faction may sell one firearm per week. All sales must be logged with Faction Management immediately.</li>
+        <li>Tier 1.5 factions may conduct up to two firearm sales per week, while Tier 2 factions may conduct up to three firearm sales per week.</li>
+        <li>All firearms gained, traded, purchased, sold, or lost count toward your overall weapon limit. Every firearm transaction must be properly logged within your faction Discord and reported to a member of Faction Management. This includes sales, trades, purchases, and losses. Lost firearms may be documented through the designated lost-firearm channel.</li>
+        <li>Any firearm gained through a refill must also be logged within your faction Discord. Factions must maintain an appropriate channel specifically for documenting refills.</li>
+        <li>Going inactive between refill periods solely to return when firearms become available again is considered abuse of the scheme and may result in faction discipline. Your faction occupies a slot within the weapon scheme to contribute to roleplay, not simply to obtain and use firearms.</li>
+        <li>Faction Management actively monitors this behavior. If a faction is found intentionally disappearing after losing its firearms or manipulating activity around refill periods, disciplinary action will be taken.</li>
+      </ul>
+    </section>
+
+  </article>
+  <footer><a href="#top" id="to-top">Back to top</a></footer>
+</main>
+<div class="sr-only" aria-live="polite" id="live"></div>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var motionOK = matchMedia('(prefers-reduced-motion: no-preference)');
+
+    // Theme toggle
+    var btn = document.getElementById('theme-btn');
+    var lbl = btn.querySelector('.lbl');
+    function sync() {
+      var dark = root.dataset.theme === 'dark';
+      lbl.textContent = dark ? 'Light mode' : 'Dark mode';
+      btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    btn.addEventListener('click', function () {
+      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem('tfb-roe-theme', root.dataset.theme); } catch (e) {}
+      sync();
+    });
+    sync();
+
+    document.getElementById('to-top').addEventListener('click', function (e) {
+      e.preventDefault();
+      history.replaceState(null, '', location.pathname + location.search);
+      window.scrollTo({ top: 0, behavior: motionOK.matches ? 'smooth' : 'auto' });
+      btn.focus({ preventScroll: true });
+    });
+
+    // Sticky jump bar: its dropdown reuses the contents list
+    var bar = document.getElementById('toc-bar');
+    var drop = document.getElementById('toc-drop');
+    var toggle = document.getElementById('toc-toggle');
+    var list = document.getElementById('toc-list').cloneNode(true);
+    list.removeAttribute('id'); list.className = '';
+    drop.appendChild(list);
+    function setOpen(open) {
+      drop.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+    toggle.addEventListener('click', function () { setOpen(!drop.classList.contains('open')); });
+    drop.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && drop.classList.contains('open')) { setOpen(false); toggle.focus(); }
+    });
+    document.addEventListener('click', function (e) {
+      if (drop.classList.contains('open') && !drop.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+    });
+
+    // Current section, reading progress, stuck state
+    var sections = [].slice.call(document.querySelectorAll('.doc > section[id]'));
+    var links = {};
+    drop.querySelectorAll('a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+    var current = document.getElementById('toc-current');
+    var currentNum = document.getElementById('toc-current-num');
+    var progress = document.querySelector('.progress span');
+    var ticking = false;
+    function onScroll() {
+      ticking = false;
+      var line = window.innerHeight * 0.3, active = sections[0], idx = 0;
+      sections.forEach(function (s, i) { if (s.getBoundingClientRect().top <= line) { active = s; idx = i; } });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) { active = sections[sections.length - 1]; idx = sections.length - 1; }
+      Object.keys(links).forEach(function (id) {
+        var on = id === active.id;
+        links[id].classList.toggle('active', on);
+        on ? links[id].setAttribute('aria-current', 'true') : links[id].removeAttribute('aria-current');
+      });
+      current.textContent = active.querySelector('h2').textContent;
+      currentNum.textContent = (idx < 9 ? '0' : '') + (idx + 1);
+      bar.classList.toggle('stuck', bar.getBoundingClientRect().top <= 0);
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ')';
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+
+    // Highlight pulse on whatever an in-page link jumps to (re-triggers on repeat clicks)
+    function flash(id) {
+      var el = id && document.getElementById(id);
+      if (!el || !el.matches('.doc > section, .sub')) return;
+      el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+      clearTimeout(el._flashT);
+      el._flashT = setTimeout(function () { el.classList.remove('flash'); }, 1600);
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (a && a.id !== 'to-top') flash(a.getAttribute('href').slice(1));
+    });
+    window.addEventListener('hashchange', function () { flash(location.hash.slice(1)); });
+
+    // Scroll reveal. Skipped without IntersectionObserver or with reduced motion, so content never depends on it.
+    if ('IntersectionObserver' in window && motionOK.matches) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { rootMargin: '0px 0px -6% 0px' });
+      document.querySelectorAll('.sec-head, .doc p, .sub-head, .rules > li, .callout, .stages .sub, .chips li, .badges').forEach(function (el) {
+        if ((el.closest('.callout') && !el.matches('.callout')) || (el.matches('.sub-head') && el.closest('.stages'))) return;
+        var sib = el.parentElement ? [].indexOf.call(el.parentElement.children, el) : 0;
+        el.style.setProperty('--d', Math.min(sib, 6) * 0.05 + 's');
+        el.classList.add('reveal');
+        io.observe(el);
+      });
+      window.addEventListener('beforeprint', function () { document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); }); });
+    }
+
+    // Copy-link controls, one per main section
+    var live = document.getElementById('live');
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      ta.remove();
+      return ok;
+    }
+    function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text).catch(function () { if (!fallbackCopy(text)) throw new Error('copy failed'); });
+      }
+      return fallbackCopy(text) ? Promise.resolve() : Promise.reject();
+    }
+    var icon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>';
+    sections.forEach(function (sec) {
+      var title = sec.querySelector('h2').textContent;
+      var wrap = document.createElement('div');
+      wrap.className = 'copy-wrap';
+      wrap.innerHTML = '<span class="copied" aria-hidden="true">Link copied</span><button type="button" class="copy">' + icon + '</button>';
+      var b = wrap.querySelector('button'), tip = wrap.querySelector('.copied'), timer;
+      b.setAttribute('aria-label', 'Copy link to ' + title + ' section');
+      b.addEventListener('click', function () {
+        var url = location.href.split('#')[0] + '#' + sec.id;
+        history.replaceState(null, '', '#' + sec.id);
+        function done(msg) {
+          tip.textContent = msg; tip.classList.add('show'); live.textContent = msg;
+          clearTimeout(timer);
+          timer = setTimeout(function () { tip.classList.remove('show'); live.textContent = ''; }, 1600);
+        }
+        copyText(url).then(function () { done('Link copied'); }, function () { done('Copy failed'); });
+      });
+      sec.querySelector('.sec-head').appendChild(wrap);
+    });
+  })();
+</script>
+</body>
+</html>
